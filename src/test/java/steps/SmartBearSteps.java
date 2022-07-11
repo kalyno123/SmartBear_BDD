@@ -120,9 +120,12 @@ public class SmartBearSteps {
         //    Assert.assertTrue(checkBox.isEnabled());
         //    Assert.assertEquals("true", checkBox.getAttribute("checked")); // selected
         //}
-        for (int i = 0; i < webOrdersPage.checkBoxes2.size(); i++){
-            Assert.assertEquals("true", webOrdersPage.checkBoxes2.get(i).getAttribute("checked")); // selected
+        for(WebElement checkBox : webOrdersPage.checkBoxes){
+            Assert.assertEquals("checked", checkBox.getAttribute("checked")); // selected
         }
+        //for (int i = 0; i < webOrdersPage.checkBoxes2.size(); i++){
+        //    Assert.assertEquals("true", webOrdersPage.checkBoxes2.get(i).getAttribute("checked")); // selected
+        //}
     }
 
     @Then("all rows should be unchecked")
@@ -182,6 +185,8 @@ public class SmartBearSteps {
             case "List of All Orders":
                 Assert.assertTrue(webOrdersPage.orderTable.isDisplayed());
                 Assert.assertTrue(webOrdersPage.orderInfoRow.isDisplayed());
+            default:
+                throw new NotFoundException("The table is not defined properly in the feature file!!!");
         }
     }
 
